@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
+import { LoginResponseInterface } from '../interfaces/login-response.interface';
+import { Observable } from 'rxjs';
 
 const base_url = environment.base_url
 
@@ -13,7 +15,7 @@ export class UserService {
     private http: HttpClient,
   ) { }
 
-  loginGoogle( token: any ) {
-    return this.http.post(`${ base_url }/auth/google`, { token } )
+  loginGoogle( token: string ): Observable<LoginResponseInterface> {
+    return this.http.post<LoginResponseInterface>(`${ base_url }/auth/google`, { token } )
   }
 }
