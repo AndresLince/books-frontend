@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Meta } from '@angular/platform-browser';
-
+import { Router } from '@angular/router';
+import jwt_decode from "jwt-decode";
 import { UserService } from 'src/app/services/user.service';
 import { environment } from 'src/environments/environment';
 
@@ -17,6 +18,7 @@ export class LoginComponent implements OnInit {
   constructor(
     public metaService: Meta,
     public userService: UserService,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -44,9 +46,13 @@ export class LoginComponent implements OnInit {
   }
 
   handleCredentialResponse = (response: any) => {
+    /*var decoded = jwt_decode(response.credential)
+    console.log(response.credential)
+
+    console.log(decoded)*/
     this.userService.loginGoogle( response.credential )
       .subscribe( resp => {
-
+        this.router.navigateByUrl('/')
     })
   }
 }
