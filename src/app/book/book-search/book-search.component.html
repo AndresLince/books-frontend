@@ -1,8 +1,9 @@
-<p>book-search works!</p>
-<input placeholder="Buscar" type="text" [formControl]="searchFormControl">
-<p>Resultados: ({{ totalItems }})</p>
-<ul>
-    <li *ngFor="let book of books">
-        <p>{{ book.title }} {{ book.author }}</p>
-    </li>
-</ul>
+<form>
+    <input id="searchBookInput" placeholder="Buscar" type="text" [formControl]="searchFormControl">
+    <p>Resultados: ({{ totalItems }})</p>
+    <ul>
+        <li *ngFor="let book of books">
+            <p>{{ book.title }} {{ book.author }}</p>
+        </li>
+    </ul>
+</form>

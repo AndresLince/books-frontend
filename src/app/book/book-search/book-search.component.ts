@@ -30,6 +30,7 @@ export class BookSearchComponent implements OnInit {
         this.getBooksData(query)
       } else {
         this.books = []
+        this.totalItems = 0
       }
     })
   }
