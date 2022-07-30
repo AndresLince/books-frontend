@@ -1,3 +1,16 @@
+.book-image {
+    display: block;
+    float: left;
+    max-width: 100%;
+    padding: 10px;
+}
+.book-information {
+    display: grid;
+    padding: 10px;
+}
+.book-list-container {
+    display: grid;
+}
 
 @media screen and (max-width: 500px) {
     .form {

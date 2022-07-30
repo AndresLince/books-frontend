@@ -45,12 +45,13 @@ export class BookSearchComponent implements OnInit {
 
   handleResponse(resp: any) {
     this.totalItems = resp.totalItems
-    console.log(resp.items)
+
     this.books = resp.items.map(
       (book: any) => new BookModel(
         1,
         book.volumeInfo.title,
         book.volumeInfo.authors? book.volumeInfo.authors[0]: '',
+        book.volumeInfo.imageLinks? book.volumeInfo.imageLinks.thumbnail: '/assets/img/imagen-not-found.png'
       )
     )
   }
