@@ -16,6 +16,7 @@ export class ConfigService {
       this.environmentVariables[key] = value
     })
     this.environmentVariables.api_google = 'https://www.googleapis.com/books/v1/'
+    this.environmentVariables.token_key = 'token_books'
   }
 
   getConfig(key: any): any {
