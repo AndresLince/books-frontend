@@ -1,15 +1,18 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, Inject, Injector, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map, debounceTime } from 'rxjs';
 import { BookModel } from 'src/app/models/book.model';
-import { listServiceProvider } from 'src/app/providers/list.service.provider';
+import { listServiceFactory } from 'src/app/factories/list.service.factory';
 import { ListService } from 'src/app/services/list.service';
+import { ListType } from "../../models/app-enums.model";
 
 @Component({
   selector: 'app-book-search',
   templateUrl: './book-search.component.html',
   styleUrls: ['./book-search.component.css'],
-  providers: [ listServiceProvider ],
+  providers: [
+    { provide: ListService, useClass: listServiceFactory(ListType.SearchBooks) }
+  ],
 })
 export class BookSearchComponent implements OnInit {
   searchFormControl = new FormControl('')
@@ -48,7 +51,7 @@ export class BookSearchComponent implements OnInit {
 
     this.books = resp.items.map(
       (book: any) => new BookModel(
-        1,
+        book.id,
         book.volumeInfo.title,
         book.volumeInfo.authors? book.volumeInfo.authors[0]: '',
         book.volumeInfo.imageLinks? book.volumeInfo.imageLinks.thumbnail: '/assets/img/imagen-not-found.png'
