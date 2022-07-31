@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { BookModel } from '../models/book.model';
 import { ApiService } from './api.service';
+import { ConfigService } from './config.service';
 
 export type ListType = BookModel[];
 
@@ -11,6 +12,7 @@ export abstract class ListService {
 
   constructor(
     protected apiService: ApiService,
+    protected configService: ConfigService
   ) {
   }
 
