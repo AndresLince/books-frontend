@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { combineLatest, Observable } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
-import { BookModel } from '../models/book.model';
+import { Observable } from 'rxjs';
 import { ListService } from './list.service';
 
 @Injectable()

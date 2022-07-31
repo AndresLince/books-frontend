@@ -1,9 +1,9 @@
-import { Component, Inject, Injector, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map, debounceTime } from 'rxjs';
 import { BookModel } from 'src/app/models/book.model';
 import { listServiceFactory } from 'src/app/factories/list.service.factory';
-import { ListService } from 'src/app/services/list.service';
+import { ListService } from 'src/app/services/list-services/list.service';
 import { ListType } from "../../models/app-enums.model";
 
 @Component({

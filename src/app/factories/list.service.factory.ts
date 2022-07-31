@@ -1,4 +1,4 @@
-import { SearchBooksListService } from "../services/search-books-list.service";
+import { SearchBooksListService } from "../services/list-services/search-books-list.service";
 import { ListType } from "../models/app-enums.model";
 
 export let listServiceFactory = (
