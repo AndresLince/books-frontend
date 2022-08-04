@@ -1,8 +1,16 @@
-<p>book-search works!</p>
-<input placeholder="Buscar" type="text" [formControl]="searchFormControl">
-<p>Resultados: ({{ totalItems }})</p>
-<ul>
-    <li *ngFor="let book of books">
-        <p>{{ book.title }} {{ book.author }}</p>
-    </li>
-</ul>
+<form>
+    <input id="searchBookInput" placeholder="Buscar" type="text" [formControl]="searchFormControl">
+    <p>Resultados: ({{ totalItems }})</p>
+    <div class="book-list-container">
+        <div class="container" *ngFor="let book of books">
+            <img class="book-image" [src]="book.thumbnail" alt="" width="148" height="235">
+            <div class="book-information">
+                <strong>{{ book.title }}</strong>
+                <div>{{ book.author }}</div>
+            </div>
+            <div>
+                <button (click)="addToReaded($event, book)">Readed</button>
+            </div>
+        </div>
+    </div>
+</form>

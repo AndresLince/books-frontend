@@ -1,15 +1,21 @@
-import { Component, Injector, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
 import { map, debounceTime } from 'rxjs';
 import { BookModel } from 'src/app/models/book.model';
-import { listServiceProvider } from 'src/app/providers/list.service.provider';
-import { ListService } from 'src/app/services/list.service';
+import { listServiceFactory } from 'src/app/factories/list.service.factory';
+import { ListService } from 'src/app/services/list-services/list.service';
+import { ListType, CreateServiceType } from "../../models/app-enums.model";
+import { CreateService } from 'src/app/services/create-services/create.service';
+import { createServiceFactory } from 'src/app/factories/create.service.factory';
 
 @Component({
   selector: 'app-book-search',
   templateUrl: './book-search.component.html',
   styleUrls: ['./book-search.component.css'],
-  providers: [ listServiceProvider ],
+  providers: [
+    { provide: ListService, useClass: listServiceFactory(ListType.SearchBooks) },
+    { provide: CreateService, useClass: createServiceFactory(CreateServiceType.ReadedBooks) }
+  ],
 })
 export class BookSearchComponent implements OnInit {
   searchFormControl = new FormControl('')
@@ -19,6 +25,7 @@ export class BookSearchComponent implements OnInit {
 
   constructor(
     private listService: ListService,
+    private createService: CreateService
   ) { }
 
   ngOnInit(): void {
@@ -30,6 +37,7 @@ export class BookSearchComponent implements OnInit {
         this.getBooksData(query)
       } else {
         this.books = []
+        this.totalItems = 0
       }
     })
   }
@@ -44,12 +52,13 @@ export class BookSearchComponent implements OnInit {
 
   handleResponse(resp: any) {
     this.totalItems = resp.totalItems
-    console.log(resp.items)
+
     this.books = resp.items.map(
       (book: any) => new BookModel(
-        1,
+        book.id,
         book.volumeInfo.title,
         book.volumeInfo.authors? book.volumeInfo.authors[0]: '',
+        book.volumeInfo.imageLinks? book.volumeInfo.imageLinks.thumbnail: '/assets/img/imagen-not-found.png'
       )
     )
   }
@@ -58,4 +67,15 @@ export class BookSearchComponent implements OnInit {
     console.log(error)
   }
 
+  addToReaded(event: Event,book: BookModel) {
+    event.preventDefault()
+    this.createService.create(book).subscribe({
+      next: this.handleResponseCreation.bind(this),
+      error: this.handleError.bind(this)
+    })
+  }
+
+  handleResponseCreation(resp: any) {
+
+  }
 }
