@@ -1,5 +1,6 @@
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { RouterTestingModule } from '@angular/router/testing'
 import { of } from 'rxjs';
 import { LoginResponseInterface } from 'src/app/interfaces/login-response.interface';
 import { UserService } from 'src/app/services/user.service';
@@ -18,7 +19,8 @@ describe('LoginComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
       imports: [
-        HttpClientTestingModule
+        HttpClientTestingModule,
+        RouterTestingModule
       ],
       providers: [
         { provide: UserService, useValue: userServiceMock}
