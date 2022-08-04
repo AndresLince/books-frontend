@@ -4,14 +4,17 @@ import { map, debounceTime } from 'rxjs';
 import { BookModel } from 'src/app/models/book.model';
 import { listServiceFactory } from 'src/app/factories/list.service.factory';
 import { ListService } from 'src/app/services/list-services/list.service';
-import { ListType } from "../../models/app-enums.model";
+import { ListType, CreateServiceType } from "../../models/app-enums.model";
+import { CreateService } from 'src/app/services/create-services/create.service';
+import { createServiceFactory } from 'src/app/factories/create.service.factory';
 
 @Component({
   selector: 'app-book-search',
   templateUrl: './book-search.component.html',
   styleUrls: ['./book-search.component.css'],
   providers: [
-    { provide: ListService, useClass: listServiceFactory(ListType.SearchBooks) }
+    { provide: ListService, useClass: listServiceFactory(ListType.SearchBooks) },
+    { provide: CreateService, useClass: createServiceFactory(CreateServiceType.ReadedBooks) }
   ],
 })
 export class BookSearchComponent implements OnInit {
@@ -22,6 +25,7 @@ export class BookSearchComponent implements OnInit {
 
   constructor(
     private listService: ListService,
+    private createService: CreateService
   ) { }
 
   ngOnInit(): void {
@@ -63,4 +67,15 @@ export class BookSearchComponent implements OnInit {
     console.log(error)
   }
 
+  addToReaded(event: Event,book: BookModel) {
+    event.preventDefault()
+    this.createService.create(book).subscribe({
+      next: this.handleResponseCreation.bind(this),
+      error: this.handleError.bind(this)
+    })
+  }
+
+  handleResponseCreation(resp: any) {
+
+  }
 }

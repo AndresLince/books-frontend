@@ -15,4 +15,8 @@ export class ApiService {
   fetchGet(route: string): Observable<any> {
     return this.http.get<any>(route)
   }
+
+  Post(route: string, data: any, headers: any) {
+    return this.http.post(route ,data, headers)
+  }
 }

@@ -2,16 +2,21 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../api.service';
 import { ConfigService } from '../config.service';
+import { UtilsService } from '../utils.service';
 
-@Injectable()
-export abstract class ListService {
-  abstract listTitle: string;
+@Injectable({
+  providedIn: 'root'
+})
+export abstract class CreateService {
 
   constructor(
     protected apiService: ApiService,
+    protected utilsService: UtilsService,
     protected configService: ConfigService
   ) {
   }
 
-  abstract getList(query: string, startIndex: number): Observable<any>
+  abstract create(data: any): Observable<any>
 }
+
+
