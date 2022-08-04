@@ -2,17 +2,17 @@ import { SearchBooksListService } from "../services/list-services/search-books-l
 import { ListType } from "../models/app-enums.model";
 
 export let listServiceFactory = (
-    ListServiceKey: string
+    serviceKey: string
 ) => {
-    let listService
-    switch (ListServiceKey) {
+    let service
+    switch (serviceKey) {
         case ListType.SearchBooks:
-            listService = SearchBooksListService
+            service = SearchBooksListService
             break;
         default:
-            listService = SearchBooksListService
+            service = SearchBooksListService
             break;
     }
-    return listService
+    return service
 };
 
