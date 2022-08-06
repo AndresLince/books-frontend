@@ -1,0 +1,16 @@
+<form>
+    <input id="searchBookInput" placeholder="Buscar" type="text" [formControl]="searchFormControl">
+    <p>Resultados: ({{ totalItems }})</p>
+    <div class="book-list-container">
+        <div class="container" *ngFor="let book of books">
+            <img class="book-image" [src]="book.thumbnail" alt="" width="148" height="235">
+            <div class="book-information">
+                <strong>{{ book.title }}</strong>
+                <div>{{ book.author }}</div>
+            </div>
+            <div>
+                <button (click)="removeFromReaded($event, book)">Readed</button>
+            </div>
+        </div>
+    </div>
+</form>
