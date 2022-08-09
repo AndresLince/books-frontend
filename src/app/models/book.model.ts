@@ -4,5 +4,6 @@ export class BookModel {
         public title: string,
         public author: string,
         public thumbnail: string,
+        public pageCount: string
     ){}
 }

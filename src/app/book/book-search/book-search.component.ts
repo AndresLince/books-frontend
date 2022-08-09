@@ -58,7 +58,8 @@ export class BookSearchComponent implements OnInit {
         book.id,
         book.volumeInfo.title,
         book.volumeInfo.authors? book.volumeInfo.authors[0]: '',
-        book.volumeInfo.imageLinks? book.volumeInfo.imageLinks.thumbnail: '/assets/img/imagen-not-found.png'
+        book.volumeInfo.imageLinks? book.volumeInfo.imageLinks.thumbnail: '/assets/img/imagen-not-found.png',
+        book.volumeInfo.pageCount
       )
     )
   }
