@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl } from '@angular/forms';
+import { debounce, debounceTime, map } from 'rxjs';
 import { listServiceFactory } from 'src/app/factories/list.service.factory';
 import { ListType } from 'src/app/models/app-enums.model';
 import { BookModel } from 'src/app/models/book.model';
@@ -25,6 +26,18 @@ export class ReadedBooksComponent implements OnInit {
 
   ngOnInit(): void {
     this.getBooksData('')
+    this.searchFormControl.valueChanges.pipe(
+      map(search => search?.toLowerCase().trim()),
+      debounceTime(900)
+    ).subscribe(query => {
+      if(query !== '') {
+        this.getBooksData(query)
+      } else {
+        this.books = []
+        this.totalItems = 0
+      }
+
+    })
   }
 
   getBooksData(query: string) {
@@ -36,7 +49,17 @@ export class ReadedBooksComponent implements OnInit {
   }
 
   handleResponse(resp: any) {
+    this.totalItems = resp.totalItems
     console.log(resp)
+    this.books = resp.books.map(
+      (book: any) => new BookModel(
+        book.id,
+        book.title,
+        book.author? book.author: '',
+        book.image? book.image: '/assets/img/imagen-not-found.png',
+        book.pageCount
+      )
+    )
   }
 
   handleError(error: any) {

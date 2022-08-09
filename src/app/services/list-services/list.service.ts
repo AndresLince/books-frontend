@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { ApiService } from '../api.service';
 import { ConfigService } from '../config.service';
+import { UtilsService } from '../utils.service';
 
 @Injectable()
 export abstract class ListService {
@@ -9,7 +10,8 @@ export abstract class ListService {
 
   constructor(
     protected apiService: ApiService,
-    protected configService: ConfigService
+    protected configService: ConfigService,
+    protected utilsService: UtilsService,
   ) {
   }
 

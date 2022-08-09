@@ -12,8 +12,8 @@ export class ApiService {
     private http: HttpClient,
   ) { }
 
-  fetchGet(route: string): Observable<any> {
-    return this.http.get<any>(route)
+  fetchGet(route: string, headers: any): Observable<any> {
+    return this.http.get<any>(route, headers)
   }
 
   Post(route: string, data: any, headers: any) {

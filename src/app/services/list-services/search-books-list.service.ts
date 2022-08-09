@@ -9,6 +9,6 @@ export class SearchBooksListService extends ListService {
 
   public getList(query: string, startIndex: number): Observable<any> {
     const route = `${ this.configService.getConfig('api_google') }volumes?q=${ encodeURIComponent(query) }&startIndex=${ startIndex }`
-    return this.apiService.fetchGet(route)
+    return this.apiService.fetchGet(route, [])
   }
 }

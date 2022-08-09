@@ -11,6 +11,6 @@ export class ReadedBooksService extends ListService{
 
   public getList(query: string, startIndex: number): Observable<any> {
     const route = `${ this.configService.getConfig('base_url') }/readed-books?q=${ encodeURIComponent(query) }&startIndex=${ startIndex }`
-    return this.apiService.fetchGet(route)
+    return this.apiService.fetchGet(route, this.utilsService.headers)
   }
 }
