@@ -13,10 +13,11 @@ export class UtilsService {
   ) { }
 
   get token(): string {
+    let token = ''
     if (typeof localStorage !== 'undefined') {
-      return localStorage.getItem(this.configService.getConfig('token_key')) || ''
+      token = localStorage.getItem(this.configService.getConfig('token_key')) || ''
     }
-    return '';
+    return token
   }
 
   get headers() {
