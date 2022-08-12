@@ -13,7 +13,10 @@ export class UtilsService {
   ) { }
 
   get token(): string {
-    return localStorage.getItem(this.configService.getConfig('token_key')) || '';
+    if (typeof localStorage !== 'undefined') {
+      return localStorage.getItem(this.configService.getConfig('token_key')) || ''
+    }
+    return '';
   }
 
   get headers() {
