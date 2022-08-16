@@ -28,13 +28,6 @@ export class UserService {
       )
   }
 
-  get token(): string {
-    if (typeof localStorage !== 'undefined') {
-      return localStorage.getItem(this.configService.getConfig('token_key')) || ''
-    }
-    return '';
-  }
-
   validateToken(): Observable<boolean> {
     return this.http.get(`${base_url}/auth/renew`, this.utilsService.headers).pipe(
       map((resp:any) => {
