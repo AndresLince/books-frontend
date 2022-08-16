@@ -33,13 +33,17 @@ export class BookSearchComponent implements OnInit {
       map(search => search?.toLowerCase().trim()),
       debounceTime(900)
     ).subscribe(query => {
-      if (query !== '') {
-        this.getBooksData(query)
-      } else {
-        this.books = []
-        this.totalItems = 0
-      }
+      this.handleInputValueChanges(query)
     })
+  }
+
+  handleInputValueChanges(query: string) {
+    if (query !== '') {
+      this.getBooksData(query)
+    } else {
+      this.books = []
+      this.totalItems = 0
+    }
   }
 
   getBooksData(query: string) {

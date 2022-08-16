@@ -13,7 +13,7 @@ describe('SearchBooksListService', () => {
     TestBed.configureTestingModule({
       providers: [
         SearchBooksListService,
-        { provide: ConfigService}
+        ConfigService
       ],
       imports: [
         HttpClientTestingModule
