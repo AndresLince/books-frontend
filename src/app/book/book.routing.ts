@@ -10,8 +10,9 @@ const routes: Routes = [
         path: '', component: BookComponent,
         canActivate: [ AuthGuard ],
         children: [
-            { path: '', component: BookSearchComponent},
-            { path: 'readed-books', component: ReadedBooksComponent}
+            { path: 'search-books', component: BookSearchComponent},
+            { path: '', component: ReadedBooksComponent},
+            { path: 'readed-books', component: ReadedBooksComponent},
         ]
     },
 ]
