@@ -32,3 +32,15 @@
         width: 265px;
     }
 }
+#searchBookInput {
+    border: 0.0625em solid #dedede;/*1-20*/
+    background: #f2f2f1;
+    border-radius: 0.3125em;/*5-20*/
+    padding: 0.625em;/*10-20*/
+}
+#searchBookInput:hover,
+#searchBookInput:focus {
+    border: 0.0625em solid black;/*1-20*/
+    background: #EAEAEA;
+    outline: none;
+}
