@@ -1,0 +1,42 @@
+.contenedor {
+    display: table;
+    clear: both;
+    width: 90%;
+    margin: 0 auto;
+}
+nav.menu-principal{
+    background: #ee5624;
+}
+nav.menu-principal ul{
+    margin: 0;
+    padding: 0;
+    display: table;
+    width: 100%;
+}
+nav.menu-principal li{
+    display: table-cell;
+}
+nav.menu-principal li a{
+    display: block;
+    text-align: center;
+    text-decoration: none;/* Le quita la linea a los enlaces*/
+    color: white;
+    text-transform: uppercase;
+    font-size: 1.125em;/*18-16*/
+    padding: 1.25em;/*18-16*/
+    border-left: 0.0625 solid #ff7041;/*1-16*/
+    border-right: 0.0625 solid #cf3705;/*1-16*/
+    -o-transition: all 0.5s ease;
+    -webkit-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+}
+nav.menu-principal li:first-child a{
+    border-left: none;
+}
+nav.menu-principal li:last-child a{
+    border-right: none;
+}
+
+nav.menu-principal li a:hover{
+    background: rgb(249,132,93);
+}
