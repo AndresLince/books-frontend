@@ -30,12 +30,7 @@ export class ReadedBooksComponent implements OnInit {
       map(search => search?.toLowerCase().trim()),
       debounceTime(900)
     ).subscribe(query => {
-      if(query !== '') {
-        this.getBooksData(query)
-      } else {
-        this.books = []
-        this.totalItems = 0
-      }
+      this.getBooksData(query)
 
     })
   }
