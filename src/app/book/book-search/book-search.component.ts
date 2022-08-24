@@ -21,7 +21,7 @@ export class BookSearchComponent implements OnInit {
   searchFormControl = new FormControl('')
   books: BookModel[] = []
   totalItems: number = 0
-  startIndex: number = 0
+  startIndex: string = '0'
 
   constructor(
     private listService: ListService,

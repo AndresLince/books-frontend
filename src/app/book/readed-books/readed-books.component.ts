@@ -18,7 +18,8 @@ export class ReadedBooksComponent implements OnInit {
   searchFormControl = new FormControl('')
   books: BookModel[] = []
   totalItems: number = 0
-  startIndex: number = 0
+  startIndex: string = '0'
+  lastId: string = '0'
 
   constructor(
     private listService: ListService,
@@ -45,6 +46,7 @@ export class ReadedBooksComponent implements OnInit {
 
   handleResponse(resp: any) {
     this.totalItems = resp.totalItems
+    this.startIndex = resp.last_id
     console.log(resp)
     this.books = resp.books.map(
       (book: any) => new BookModel(
@@ -63,6 +65,23 @@ export class ReadedBooksComponent implements OnInit {
 
   removeFromReaded(event: Event,book: BookModel) {
 
+  }
+
+  changePage(event: string) {
+    switch (event) {
+      case 'Next':
+          this.lastId = this.startIndex
+        break;
+      case 'Previous':
+          this.startIndex = this.lastId
+        break;
+      case 'Initial':
+        this.startIndex = '0'
+        break;
+      default:
+        break;
+    }
+    this.getBooksData('')
   }
 
 }
