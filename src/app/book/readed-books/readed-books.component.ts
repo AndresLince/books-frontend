@@ -5,6 +5,7 @@ import { listServiceFactory } from 'src/app/factories/list.service.factory';
 import { ListType } from 'src/app/models/app-enums.model';
 import { BookModel } from 'src/app/models/book.model';
 import { ListService } from 'src/app/services/list-services/list.service';
+import { IndexPaginatorService } from 'src/app/services/paginator-services/index-paginator.service';
 
 @Component({
   selector: 'app-readed-books',
@@ -23,6 +24,7 @@ export class ReadedBooksComponent implements OnInit {
 
   constructor(
     private listService: ListService,
+    private indexPaginatorService: IndexPaginatorService
   ) { }
 
   ngOnInit(): void {
@@ -46,7 +48,7 @@ export class ReadedBooksComponent implements OnInit {
 
   handleResponse(resp: any) {
     this.totalItems = resp.totalItems
-    this.startIndex = resp.last_id
+    this.indexPaginatorService.addIndex(resp.last_id)
     console.log(resp)
     this.books = resp.books.map(
       (book: any) => new BookModel(
@@ -68,19 +70,7 @@ export class ReadedBooksComponent implements OnInit {
   }
 
   changePage(event: string) {
-    switch (event) {
-      case 'Next':
-          this.lastId = this.startIndex
-        break;
-      case 'Previous':
-          this.startIndex = this.lastId
-        break;
-      case 'Initial':
-        this.startIndex = '0'
-        break;
-      default:
-        break;
-    }
+    this.startIndex = this.indexPaginatorService.getIndex(event)
     this.getBooksData('')
   }
 
