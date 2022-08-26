@@ -30,7 +30,7 @@ describe('SearchBooksListService', () => {
 
   it('should get list', () => {
     const query = ''
-    const startIndex = 0
+    const startIndex = '0'
     const apiGoogle = configService.getConfig('api_google');
     service.getList(query, startIndex).subscribe((resp: any) => {
 
