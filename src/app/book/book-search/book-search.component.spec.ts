@@ -58,4 +58,15 @@ describe('BookSearchComponent', () => {
     expect(component.books.length).toBe(2)
     expect(component.totalItems).toBe(2)
   });
+
+  it('handleInputValueChanges should update total items and books when query is empty', async() => {
+    component.handleInputValueChanges('')
+    expect(component.books.length).toBe(0)
+    expect(component.totalItems).toBe(0)
+  });
+
+  it('handleInputValueChanges should update total items and books when query is empty', async() => {
+    component.handleInputValueChanges('query')
+    expect(component.query).toBe('query')
+  });
 });

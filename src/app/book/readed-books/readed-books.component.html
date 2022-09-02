@@ -13,4 +13,8 @@
             </div>
         </div>
     </div>
+    <app-paginator
+        [totalItems]="totalItems"
+        (newPage)="changePage($event)"
+    ></app-paginator>
 </form>

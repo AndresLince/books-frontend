@@ -1,0 +1,13 @@
+<nav>
+    <ul>
+        <li *ngIf="currentPage > 2">
+            <a (click)="changePage('Previous', -1)">Previous</a>
+        </li>
+        <li *ngIf="currentPage == 2">
+            <a (click)="changePage('Initial', -1)">Previous</a>
+        </li>
+        <li *ngIf="this.totalPages != this.currentPage">
+            <a (click)="changePage('Next', 1)">Next</a>
+        </li>
+    </ul>
+</nav>

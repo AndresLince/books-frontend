@@ -15,5 +15,5 @@ export abstract class ListService {
   ) {
   }
 
-  abstract getList(query: string, startIndex: number): Observable<any>
+  abstract getList(query: string, startIndex: string): Observable<any>
 }

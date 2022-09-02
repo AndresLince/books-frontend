@@ -4,6 +4,13 @@
     width: 90%;
     margin: 0 auto;
 }
+nav {
+    width: 90%;
+    margin: 0 auto;
+    background: #dce2e5;
+    padding: 10px;
+    display: block;
+}
 nav.menu-principal{
     background: #ee5624;
 }
@@ -23,9 +30,9 @@ nav.menu-principal li a{
     color: white;
     text-transform: uppercase;
     font-size: 1.125em;/*18-16*/
-    padding: 1.25em;/*18-16*/
-    border-left: 0.0625 solid #ff7041;/*1-16*/
-    border-right: 0.0625 solid #cf3705;/*1-16*/
+    padding: 1.25em 0;/*18-16*/
+    border-left: 0.0625em solid #ff7041;/*1-16*/
+    border-right: 0.0625em solid #cf3705;/*1-16*/
     -o-transition: all 0.5s ease;
     -webkit-transition: all 0.5s ease;
     transition: all 0.5s ease;

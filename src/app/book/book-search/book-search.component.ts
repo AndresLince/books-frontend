@@ -21,7 +21,8 @@ export class BookSearchComponent implements OnInit {
   searchFormControl = new FormControl('')
   books: BookModel[] = []
   totalItems: number = 0
-  startIndex: number = 0
+  startIndex: string = '0'
+  query: string = ''
 
   constructor(
     private listService: ListService,
@@ -38,8 +39,9 @@ export class BookSearchComponent implements OnInit {
   }
 
   handleInputValueChanges(query: string) {
-    if (query !== '') {
-      this.getBooksData(query)
+    this.query = query
+    if (this.query !== '') {
+      this.getBooksData(this.query)
     } else {
       this.books = []
       this.totalItems = 0
