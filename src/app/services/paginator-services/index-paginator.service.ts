@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { TypeIndexPaginator } from 'src/app/models/app-enums.model';
 
 @Injectable({
   providedIn: 'root'
@@ -28,11 +29,11 @@ export class IndexPaginatorService {
   getIndex(type: string) : string {
     let index = '0'
     switch (type) {
-      case 'Next':
+      case TypeIndexPaginator.Next:
         index = this.getNextIndex()
         break;
-      case 'Previous':
-      case 'Initial':
+      case TypeIndexPaginator.Previous:
+      case TypeIndexPaginator.Initial:
         index = this.getLastIndex()
         break;
       default:

@@ -5,3 +5,8 @@ export enum ListType {
 export enum CreateServiceType {
     ReadedBooks = 'ReadedBooks',
 }
+export enum TypeIndexPaginator {
+    Next = 'Next',
+    Previous = 'Previous',
+    Initial = 'Initial',
+}
