@@ -22,4 +22,11 @@ describe('PaginatorComponent', () => {
   it('should create', () => {
     expect(component).toBeTruthy();
   });
+
+  it('should change the page', () => {
+    component.changePage('', 1)
+    expect(component.currentPage).toBe(2)
+    component.changePage('', -1)
+    expect(component.currentPage).toBe(1)
+  });
 });
